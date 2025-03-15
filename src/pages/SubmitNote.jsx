@@ -51,7 +51,7 @@ const SubmitPage = () => {
 
       try {
         const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/add-note`, { receiver, message });
-        console.log(res);
+        
         if (res.data.success) {
           setClientMessage(res.data.message);
           setIsPopUpOpen(true);

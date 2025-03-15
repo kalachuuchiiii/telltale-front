@@ -21,10 +21,10 @@ export const fetchAllNotes = createAsyncThunk("fetchAllNotes", async(_, thunkAPI
 export const fetchAllNotesByReceiver = createAsyncThunk("fetchAllNotesByReceiver", async(getReceiver, thunkAPI) => {
   try{
     const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/get-all-notesof/${getReceiver}`);
-    console.log(res)
+    
   return res.data
   }catch(e){
-    console.log(e);
+    
      return thunkAPI.rejectWithValue(e);
   }
   
