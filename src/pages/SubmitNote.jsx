@@ -80,7 +80,7 @@ const SubmitPage = () => {
       }
     </AnimatePresence>
     <p className="text-center text-gray-400 mx-4 my-8 text-xs flex flex-col">
-      This project provides anonymity for sending messages
+      This project allows you to send messages anonymously,
       <span>
         So feel free to send one!
       </span>
@@ -88,7 +88,7 @@ const SubmitPage = () => {
     <form onSubmit={addNote} className="w-full flex flex-col items-center gap-1">
       <section className = "flex w-full items-center ">
         <label className = "p-2">To:</label>
-              <input value={documentFormat.receiver} name="receiver" onChange={handleDocChange} className="p-2 w-full rounded outline"/>
+              <input value={documentFormat.receiver} name="receiver" onChange={handleDocChange} placeholder = "Who?" className="p-2 w-full rounded outline"/>
       </section>
       {
 

@@ -20,7 +20,7 @@ const NoteDetail = () => {
       const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/get-one-note/${id}`);
       if(res.data.success){
         setNote(res.data.note);
-        console.log(res.data.note);
+        
         
     const [year, month, day] = res.data.note.createdAt.split("T")[0].split("-").map(Number);
     setDate(`${months[month - 1]} ${day}, ${year}`);

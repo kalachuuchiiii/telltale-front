@@ -12,7 +12,7 @@ const PopUp = ({success, message}) => {
   exit = {{
     opacity: 0
   }}
-  className = "fixed pointer-events-none flex justify-center w-11/12 top-2 mx-0" 
+  className = "fixed pointer-events-none flex justify-center w-11/12 z-10 top-2 mx-0" 
   >
     <p className = "text-neutral-50 $ bg-black/80 w-full p-4  rounded-lg" >
           {
