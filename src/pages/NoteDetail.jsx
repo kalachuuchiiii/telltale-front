@@ -43,14 +43,14 @@ const NoteDetail = () => {
       An anonymous person has sent you a note!
     </p>
     </section>
-    <p className = "mb-8 px-4 pb-8 w-full shadow-lg rounded-lg text-lg shadow-gray-100/80 text-center">
+    <div className = "mb-8 px-4 pb-8 w-full shadow-lg rounded-lg text-lg shadow-gray-100/80 text-center">
       {
         note.message || "..."
       }
           <p className = "text-gray-400 mt-8 mx-4 mb-0 text-right text-sm">Sent on {
      date || "..."
     }</p>
-    </p>
+    </div>
   </div>
 }
 

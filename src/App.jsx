@@ -1,9 +1,8 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect } from 'react'
 import './App.css'
-import { Routes, Route, useParams, Outlet } from 'react-router-dom';
+import { Routes, Route, useParams, Outlet, useLocation } from 'react-router-dom';
 import NoteProfile from './Components/NoteProfile.jsx';
+
 import NavBar from './Components/Navbar.jsx';
 import SearchBar from './Components/SearchBar.jsx';
 import SubmitNotePage from './pages/SubmitNote.jsx';
@@ -12,6 +11,15 @@ import NoteDetail from './pages/NoteDetail.jsx';
 import NotFound from './pages/NotFound.jsx';
 function App() {
 
+  const location = useLocation();
+
+useEffect(() => {
+    if(location.pathname !== "/"){
+      
+    }
+    
+    
+  }, [location, location.pathname])
 
   return (
     <div>
