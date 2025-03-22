@@ -65,6 +65,7 @@ const BrowsePage = () => {
   
   useEffect(() => {
     //Initial Render Fetching
+    setStopPagination(false);
     if((notes.length === 0  && (!searchQuery.get("q") || searchQuery.get("q") === ""))){
       setPage(1);
       setStopPagination(false);
@@ -83,36 +84,32 @@ const BrowsePage = () => {
   
   
   useEffect(() => {
-    if((searchResults.length !== 0 && searchResults.length === searchResultTotalCount) || (notes.length !== 0 && notes.length === totalNotesCount)){
-      setStopPagination(true);
-      setLoading(false);
-      return;
-    }
+    
     //Infinite Scroll Fetching
-    if(searchQuery.get("q") && searchQuery.get("q") !== ""){
-      setStopPagination(searchResults.length === searchQuery && searchResults.length !== 0);
-    }
-    if(searchQuery.get("q") && page !== 1 && (searchResults.length < searchResultTotalCount)){
+    if(searchQuery.get("q") && page !== 1 && !stopPagination){
       setLoading(true);
       handleFetchDataByReceiver(searchQuery.get("q"), page);
       return;
     }
     
-    if(notes.length !== 0 && notes.length < totalNotesCount &&(page !== 1 && (!searchQuery.get("q") || searchQuery.get("q") === ""))){
+    if(!stopPagination && (page !== 1 && (!searchQuery.get("q") || searchQuery.get("q") === ""))){
    setLoading(true);
       handleFetchData(page);
     }
   }, [page])
-
   
-  const handleScrollTop = () => {
-    if (topRef.current) {
-      topRef.current.scrollIntoView({ behavior: "smooth" })
-    }
-  }
+  useEffect(() => {
+    
+      setStopPagination((searchResults.length !== 0 && searchResults.length === searchResultTotalCount) || (notes.length !== 0 && notes.length === totalNotesCount));
+      
+    
+  }, [notes, searchResults])
+
+
 
   useEffect(() => {
     const handleScrollFetch = () => {
+      
       if ((window.innerHeight + document.documentElement.scrollTop + 1) >= document.documentElement.scrollHeight - 10) {
         setPage(prev => prev + 1);
       }
@@ -145,14 +142,8 @@ const BrowsePage = () => {
       <div className="pb-4 flex justify-center items-center">
         {
 
-        loading ? <MoonLoader size="26" />: stopPagination &&
-            <section className="flex flex-col gap-2 text-center">
-              <p >You've seen all notes
-              </p>
-              <button onClick={handleScrollTop} className="underline bg-gray-800 text-neutral-50 p-3 rounded hover:bg-neutral-50 hover:outline hover:text-gray-800">
-                Scroll Up
-              </button>
-            </section>
+        loading ? <MoonLoader size="26" />: stopPagination && <p className = "text-neutral-500" >You've seen all notes
+          </p>
         }
       </div>
     </div>
