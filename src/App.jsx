@@ -14,7 +14,7 @@ import NotFound from './pages/NotFound.jsx';
 function App() {
  
   const [userInfo, setUserInfo] = useState({})
-  const [isSessionLookingPending, setIsSessionLookPending] = useState(false);
+  const [isSessionLookingPending, setIsSessionLookPending] = useState(true);
   const location = useLocation();
 
 useEffect(() => {

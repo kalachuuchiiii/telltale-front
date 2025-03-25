@@ -2,9 +2,10 @@ import { NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Dropdown from '../Components/Dropdown.jsx';
 import axios from 'axios';
+import { MoonLoader } from 'react-spinners';
 import { AnimatePresence } from 'framer-motion';
 
-const Navbar = ({ userInfo }) => {
+const Navbar = ({ userInfo, isSessionLookingPending }) => {
   const name = userInfo?.name || "";
 
   const [isDropdownOpen, setIsDropDownOpen] = useState(false);
@@ -21,11 +22,11 @@ const Navbar = ({ userInfo }) => {
       <NavLink className="hover:underline cursor-pointer active:underline" to="/submit" >Submit</NavLink>
       <NavLink className="hover:underline cursor-pointer active:underline" to="/">Browse</NavLink>
       {
-        !isSessionRunning || Object.keys(userInfo).length === 0 ?  <NavLink to="/login" className="hover:underline cursor-pointer active:underline"  >
+        isSessionLookingPending ? <MoonLoader size="16" color="white" /> : Object.keys(userInfo).length > 0 ? <p className="font-semibold text-neutral-300 italic" onClick={() => setIsDropDownOpen(prev => !prev)}>
+          {name || ""}
+        </p> : (!isSessionRunning || Object.keys(userInfo).length === 0) && <NavLink to="/login" className="hover:underline cursor-pointer active:underline"  >
           Login
-        </NavLink> : name && <p className="font-semibold text-neutral-300 italic" onClick={() => setIsDropDownOpen(prev => !prev)}>
-        {name || ""}
-      </p>
+        </NavLink>
       }
       <AnimatePresence>
         {
