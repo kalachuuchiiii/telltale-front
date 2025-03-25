@@ -3,7 +3,7 @@ import axios from 'axios';
 import PopUp from '../Components/popUp.jsx';
 import { AnimatePresence } from 'framer-motion';
 
-const SubmitPage = () => {
+const SubmitPage = ({userInfo}) => {
 
   const [documentFormat, setDocumentFormat] = useState({
     receiver: JSON.parse(localStorage.getItem("documentFormat"))?.receiver || "",
@@ -50,7 +50,7 @@ const SubmitPage = () => {
     } else {
 
       try {
-        const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/add-note`, { receiver, message });
+        const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/add-note`, { receiver, message, sender: userInfo?._id || "" });
         
         if (res.data.success) {
           setClientMessage(res.data.message);

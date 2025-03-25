@@ -18,6 +18,7 @@ const BrowsePage = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [searchResultTotalCount, setSearchResultTotalCount] = useState(0);
   const [stopPagination, setStopPagination] = useState(false)
+  const [isSearching, setIsSearching] = useState(false);
   
   
   const handleFetchData = async(pageNum) => {
@@ -104,6 +105,10 @@ const BrowsePage = () => {
       
     
   }, [notes, searchResults])
+  
+  useEffect(() => {
+    setIsSearching((searchQuery.get("q") && searchQuery.get("q") !== "") || (searchResults.length > 0 && page !== 1));
+  }, [searchResults, notes, searchQuery, searchQuery.get("q")])
 
 
 
@@ -132,11 +137,10 @@ const BrowsePage = () => {
     <SearchBar />
     <div className="flex flex-col items-center gap-4 justify-center w-full text-sm">
       {
-        (searchQuery.get("q") ? <p className="text-gray-500 mb-4">Notes found for  '{searchQuery.get("q")}' : {totalNotesCount || searchResultTotalCount}</p> : <p className="text-gray-500 mb-4"> {totalNotesCount || searchResultTotalCount} Notes Found</p>)
+        (isSearching ? <p className="text-gray-500 mb-4">Notes found for '{searchQuery.get("q")}' : {isSearching ? searchResultTotalCount : totalNotesCount}</p> : <p className="text-gray-500 mb-4"> {totalNotesCount} Notes Found</p>)
       }
-
       {
-        notes && notes.length > 0 && !searchQuery.get("q") ? notes.map(note => <NoteProfile key = {note._id} note = {note} />) : searchResults && searchResults.length > 0 && searchQuery.get("q") && searchResults.map(note => <NoteProfile key = {note?._id}note = {note} />)
+        (notes && notes.length > 0 && !isSearching) ? notes.map(note => <NoteProfile key = {note._id} note = {note} />) : isSearching  && searchResults.map(note => <NoteProfile key = {note?._id}note = {note} />)
       }
 
       <div className="pb-4 flex justify-center items-center">
