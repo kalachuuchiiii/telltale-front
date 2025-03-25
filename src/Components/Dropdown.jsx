@@ -1,16 +1,19 @@
 import { motion } from 'framer-motion';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { fadeVariant } from '../variants/variant.js';
 import axios from 'axios';
 
 const Dropdown = ({onClose}) => {
+  const nav = useNavigate();
   
   const hover = "p-3 duration-200 w-full hover:bg-black/95";
   
   const handleLogout = async() => {
    try {
      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/logout`, {}, {withCredentials: true})
-     console.log({res})
+     
      if(res.data.success){
+       nav("/");
        window.location.reload();
      }
    }catch(e){
@@ -32,8 +35,10 @@ const Dropdown = ({onClose}) => {
     <button className = {hover} >
       Notes for you
     </button>
-    <button className = {hover}>
-      Submitted notes
+    <button  className = {hover}>
+      <NavLink to = "/submit-history" >
+        Submitted notes
+      </NavLink>
     </button>
     <button className = {hover}>
       Share your link
