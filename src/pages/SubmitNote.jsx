@@ -73,13 +73,13 @@ const SubmitPage = ({userInfo}) => {
   }
 
 
-  return <div className="w-full">
+  return <div className="w-full mb-10">
     <AnimatePresence>
       {
         isPopUpOpen && <PopUp message={clientMessage} />
       }
     </AnimatePresence>
-    <p className="text-center text-gray-400 mx-4 my-8 text-xs flex flex-col">
+    <p className="text-center italic rounded-lg mx-4 my-8 bg-pink-50 p-4 outline outline-pink-200 flex flex-col">
       This project allows you to send messages anonymously,
       <span>
         So feel free to send one!
@@ -93,7 +93,7 @@ const SubmitPage = ({userInfo}) => {
       {
 
       }
-      <textarea value={documentFormat.message} name="message" onChange={handleDocChange} ref={textAreaRef} className="px-4 py-8 rounded-lg shadow-lg shadow-gray-100/80 min-h-[50vh] w-full outline-none my-8" placeholder="Write your message here..." />
+      <textarea value={documentFormat.message} name="message" onChange={handleDocChange} ref={textAreaRef} className="px-4 py-8 rounded-lg shadow-lg shadow-gray-100/80 min-h-[40vh] w-full outline-none my-8" placeholder="Write your message here..." />
       <button type="submit" className="w-6/12 p-2 rounded outline bg-neutral-50 text-gray-800 active:bg-gray-800 hover:bg-gray-800 active:text-neutral-50 hover:text-neutral-50 duration-200 cursor-pointer">Send!</button>
     </form>
   </div>

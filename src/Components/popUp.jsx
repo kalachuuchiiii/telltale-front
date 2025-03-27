@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-const PopUp = ({success, message}) => {
+const PopUp = ({ message}) => {
   
   return <motion.div
   initial = {{

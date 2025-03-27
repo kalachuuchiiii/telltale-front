@@ -43,7 +43,7 @@ const SearchBar = () => {
 
   return <form onSubmit={handleFetchByReceiver} className="w-11/12 mt-10 outline rounded-lg mb-6 flex ">
     <input onChange={(e) => setReceiver(e.target.value)} value={receiver} className="p-2 w-full  rounded-l" placeholder={placeholders[placeholderIndex]} />
-    <button type="submit" className="p-2  rounded-r  bg-neutral-200 hover:bg-neutral-200 active:bg-neutral-400 duration-200">
+    <button type="submit" className="p-2  rounded-r  bg-gray-900 hover:bg-black text-white hover:text-gray-600 duration-200">
       <CiSearch className="size-6" />
     </button>
   </form>

@@ -3,7 +3,7 @@ import NavBar from '../Components/Navbar.jsx';
 import SearchBar from '../Components/SearchBar.jsx';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios'
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, NavLink } from 'react-router-dom';
 import { MoonLoader } from 'react-spinners';
 
 const BrowsePage = () => {
@@ -132,10 +132,15 @@ const BrowsePage = () => {
 
 
 
-
   return <div ref={topRef} className="w-full flex flex-col justify-center items-center" >
+    <div className = "mt-4 p-4 outline rounded-lg outline-pink-200 w-11/12 italic text-center bg-pink-50">
+<NavLink to = "/login" className = "underline" >Login</NavLink> or <NavLink to = "/register" className = "underline">Create an account</NavLink> to share your unique link, receive anonymous notes directly, and reply in a private space!
+    </div>
+    <div className = "mt-4 p-4 w-11/12 outline rounded-lg outline-pink-200 italic text-center bg-pink-50">
+      Send your thoughts, confessions, or the words you’ve never said—a place to let it out.
+    </div>
     <SearchBar />
-    <div className="flex flex-col items-center gap-4 justify-center w-full text-sm">
+    <div className="flex flex-col items-center gap-4 justify-center w-10/12 text-sm">
       {
         (isSearching ? <p className="text-gray-500 mb-4">Notes found for '{searchQuery.get("q")}' : {isSearching ? searchResultTotalCount : totalNotesCount}</p> : <p className="text-gray-500 mb-4"> {totalNotesCount} Notes Found</p>)
       }

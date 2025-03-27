@@ -35,7 +35,7 @@ const Login = () => {
       console.log({res})
       setMessageFormat({
         success: true, 
-        message: res.data.message
+        message: res?.data?.message
       });
       setLoading(false);
       nav("/")
@@ -44,7 +44,7 @@ const Login = () => {
       console.log({e})
       setMessageFormat({
         success: false, 
-        message: e.response.data.message || "Internal Server Error"
+        message: e?.response?.data?.message || "Internal Server Error"
       });
       setLoading(false);
     }
