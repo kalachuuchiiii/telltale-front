@@ -14,7 +14,7 @@ const Dropdown = ({onClose, name, setIsLogoutModalOpen}) => {
   
   const handleShareLink = () => {
     if(isCopied)return;
-    navigator.clipboard.writeText(`http://localhost:5173/u/${name}`);
+    navigator.clipboard.writeText(`https://thetelltale.vercel.app/u/${name}`);
     setIsCopied(true);
     setTimeout(() => {
       setIsCopied(false);
