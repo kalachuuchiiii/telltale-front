@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { IoCopyOutline } from "react-icons/io5";
 
 const NoteDetail = () => {
   
   const [note, setNote] = useState({});
   const [date, setDate] = useState("");
-  
+  const [copied, setCopied] = useState(false);
   
     
   
@@ -30,6 +31,15 @@ const NoteDetail = () => {
     
   }, [id])
   
+  const handleCopy = () => {
+    navigator.clipboard.writeText(window.location.href)
+    setCopied(true); 
+    setTimeout(() => {
+      setCopied(false)
+    }, 3000)
+  }
+  
+  
   if(Object.keys(note).length === 0){
     return <div className = "my-4 text-sm text-center text-gray-500">
       Loading...
@@ -46,10 +56,15 @@ const NoteDetail = () => {
     <div className = "mb-8 px-4 pb-8 w-full shadow-lg rounded-lg text-lg shadow-gray-100/80 text-center">
       {
         note.message || "..."
-      }
-          <p className = "text-gray-400 mt-8 mx-4 mb-0 text-right text-sm">Sent on {
+      }      <div className = "w-full flex justify-between items-center mt-10 text-sm  ">
+        <button className = "text-center truncate w-20" onClick = {handleCopy}>{
+          copied ? <p className = "text-gray-600">Copied!</p> : <div className = "flex justify-center gap-2 "><IoCopyOutline  /> Share link</div>
+        }</button>
+                  <p className = "text-gray-400 text-right ">Sent on {
      date || "..."
     }</p>
+      </div>
+      
     </div>
   </div>
 }
