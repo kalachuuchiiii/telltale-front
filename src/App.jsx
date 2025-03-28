@@ -59,7 +59,7 @@ function App() {
             </Suspense>
             </div>
         </div>} >
-          <Route path="/" element={<BrowsePage />} />
+          <Route path="/" element={<BrowsePage isAuthenticated = {Object.keys(userInfo).length > 0} />} />
           <Route path="/submit" element={<SubmitNotePage userInfo = {userInfo}/>} />
           <Route path = "/details/:id" element = {<NoteDetail/>} />
                   <Route path = "/register" element = {<Register />} />
