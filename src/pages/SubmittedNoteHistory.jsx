@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import NotFound from '../pages/NotFound.jsx';
 import NoteProfile from '../Components/NoteProfile.jsx';
+import { Loading } from '../Components/Loading.jsx';
 import { MoonLoader } from 'react-spinners';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 
-const SubmitHistory = ({sender}) => {
+const SubmitHistory = ({sender, isAuthenticated}) => {
   
   const [submittedNotes, setSubmittedNotes] = useState([]);
   const [isPending, setIsPending] = useState(true);
@@ -62,6 +63,13 @@ const SubmitHistory = ({sender}) => {
       window.removeEventListener("scroll", handleScrollPagination);
     }
   }, [])
+  
+  if(!isAuthenticated){
+    
+    return <Loading>
+     Note: Make sure you're logged in to access this page.
+    </Loading>
+  }
   
   
   

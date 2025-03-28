@@ -8,7 +8,7 @@ export const Loading = ({children}) => {
       <p className = "text-sm text-gray-500 text-center">
               <p className = "text-base">Loading...</p>
                 <p>
-        If this takes too long, please reload the page,
+        If this takes too long, please reload the page
       </p>
 {children}
       </p>

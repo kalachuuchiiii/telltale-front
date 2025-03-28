@@ -64,9 +64,8 @@ function App() {
           <Route path = "/details/:id" element = {<NoteDetail/>} />
                   <Route path = "/register" element = {<Register />} />
                   <Route path = "/login" element = {<Login />} />
-                  {
-                    Object.keys(userInfo).length > 0 && <Route path = "/submit-history" element = {<SubmitHistory sender = {userInfo?._id} isSessionLookingPending = {isSessionLookingPending} />} />
-                  }
+<Route path = "/submit-history" element = {<SubmitHistory sender = {userInfo?._id} isAuthenticated = {Object.keys(userInfo).length > 0} />
+} />
                   <Route path = "*" element = {<NotFound />} />
                   <Route path = "/u/:name" element = {<UserSubmit />} />
                   <Route path = "/received-notes" element = {<ReceivedNotes id = {userInfo._id}/>} />
