@@ -88,7 +88,7 @@ const SubmitPage = ({userInfo}) => {
     <form onSubmit={addNote} className="w-full flex flex-col items-center gap-1">
       <section className = "flex w-full items-center ">
         <label className = "p-2">To:</label>
-              <input value={documentFormat.receiver} name="receiver" onChange={handleDocChange} placeholder = "Who?" className="p-2 w-full rounded outline"/>
+              <input value={documentFormat.receiver} name="receiver" onChange={handleDocChange} placeholder = "Whom?" className="p-2 w-full rounded outline"/>
       </section>
       {
 
